@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Examination.Domain.SeedWork;
-using Examination.Dtos.Enums;
+using Examination.Shared.Enums;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Examination.Domain.AggregateModels.QuestionAggregate

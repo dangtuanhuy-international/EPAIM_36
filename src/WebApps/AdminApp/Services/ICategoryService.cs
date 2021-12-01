@@ -1,5 +1,6 @@
-﻿using Examination.Dtos.Categories;
-using Examination.Dtos.SeedWork;
+﻿
+using Examination.Shared.Categories;
+using Examination.Shared.SeedWork;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Collections.Generic;
 using System.Net.Http;

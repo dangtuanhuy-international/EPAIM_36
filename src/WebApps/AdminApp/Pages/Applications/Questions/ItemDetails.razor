@@ -1,13 +1,13 @@
-﻿@page "/app/categories/details/{Id}"
-@using Examination.Shared.Categories
+﻿@page "/app/questions/details/{Id}"
+@using Examination.Shared.Questions
 @using Microsoft.Extensions.Logging
-@inject ICategoryService CategoryService
+@inject IQuestionService QuestionService
 @inject ILogger<ItemDetails> Logger
 @inject ISnackbar Snackbar
 @inject NavigationManager NavigationManager;
 
 
-<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@model.Name</MudText>
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@model.Content</MudText>
 <MudGrid>
     <MudItem xs="12" sm="12" md="6">
         <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
@@ -20,10 +20,10 @@
                 <MudCardContent Class="px-5">
                     <DataAnnotationsValidator />
                     <MudTextField Label="Name" HelperText="Example: C# Programming"
-                                  @bind-Value="model.Name" For="@(() => model.Name)" />
+                                  @bind-Value="model.Content" For="@(() => model.Content)" />
 
                     <MudTextField Label="URL Path" HelperText="Example: csharp-programming"
-                                  @bind-Value="model.UrlPath" For="@(() => model.UrlPath)" />
+                                  @bind-Value="model.Explain" For="@(() => model.Explain)" />
 
                 </MudCardContent>
                 <MudCardActions>
@@ -42,7 +42,7 @@
     bool loading = false;
     [Parameter]
     public string Id { set; get; }
-    UpdateCategoryRequest model = new UpdateCategoryRequest();
+    UpdateQuestionRequest model = new UpdateQuestionRequest();
     protected override async Task OnInitializedAsync()
     {
         await LoadItemDetails(Id);
@@ -51,7 +51,7 @@
     private async Task OnValidSubmit(EditContext context)
     {
         loading = true;
-        success = await CategoryService.UpdateAsync(model);
+        success = await QuestionService.UpdateAsync(model);
         if (success)
         {
             Snackbar.Add("Update item success", Severity.Success);
@@ -67,10 +67,10 @@
     private async Task LoadItemDetails(string id)
     {
         loading = true;
-        var item = await CategoryService.GetCategoryByIdAsync(Id);
+        var item = await QuestionService.GetQuestionByIdAsync(Id);
         model.Id = item.Id;
-        model.Name = item.Name;
-        model.UrlPath = item.UrlPath;
+        model.Content = item.Content;
+        model.Explain = item.Explain;
         loading = false;
     }
 

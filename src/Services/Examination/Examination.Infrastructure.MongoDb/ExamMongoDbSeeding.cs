@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Examination.Domain.AggregateModels.CategoryAggregate;
 using Examination.Domain.AggregateModels.QuestionAggregate;
 using Examination.Domain.AggregateModels.ExamAggregate;
-using Examination.Dtos.Enums;
+using Examination.Shared.Enums;
 using System.Linq;
 
 namespace Examination.Infrastructure

@@ -66,7 +66,7 @@ namespace Examination.API
 
             services.AddSingleton<IMongoClient>(c =>
             {
-                return new MongoClient(mongodbConnectionString);
+                return new MongoClient("mongodb://anpham07:9egGepiIECD137lrktOPltt5NoKunCfZA5qwamucE7mgqMEJW3DFEadLhU9cXg4QCz4ZO1xMhdyrDxxpWkHfKw==@anpham07.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@anpham07@");
             });
 
             services.AddScoped(c => c.GetService<IMongoClient>()?.StartSession());
@@ -135,7 +135,7 @@ namespace Examination.API
             //Health check
             services.AddHealthChecks()
                     .AddCheck("self", () => HealthCheckResult.Healthy())
-                    .AddMongoDb(mongodbConnectionString: mongodbConnectionString,
+                    .AddMongoDb(mongodbConnectionString: "mongodb://anpham07:9egGepiIECD137lrktOPltt5NoKunCfZA5qwamucE7mgqMEJW3DFEadLhU9cXg4QCz4ZO1xMhdyrDxxpWkHfKw==@anpham07.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@anpham07@",
                                 name: "mongo",
                                 failureStatus: HealthStatus.Unhealthy);
 

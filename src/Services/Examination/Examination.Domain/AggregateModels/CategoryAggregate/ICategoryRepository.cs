@@ -14,5 +14,7 @@ namespace Examination.Domain.AggregateModels.CategoryAggregate
         Task<Category> GetCategoriesByIdAsync(string id);
 
         Task<Category> GetCategoriesByNameAsync(string name);
+
+        Task<IList<Category>> GetAllCategoriesAsync();
     }
 }

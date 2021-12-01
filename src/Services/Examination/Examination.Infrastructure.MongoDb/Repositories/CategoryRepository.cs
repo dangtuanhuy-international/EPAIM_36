@@ -19,6 +19,12 @@ namespace Examination.Infrastructure.Repositories
         {
         }
 
+        public async Task<IList<Category>> GetAllCategoriesAsync()
+        {
+            var items = await Collection.AsQueryable().ToListAsync();
+            return items;
+        }
+
         public async Task<Category> GetCategoriesByIdAsync(string id)
         {
             FilterDefinition<Category> filter = Builders<Category>.Filter.Eq(s => s.Id, id);

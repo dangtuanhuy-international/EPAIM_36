@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Examination.API.Extension;
 using Examination.API.Filters;
 using Examination.Application.Commands.V1.Exams.StartExam;
 using Examination.Application.Mapping;
@@ -44,6 +45,7 @@ namespace Examination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             var user = Configuration.GetValue<string>("DatabaseSettings:User");
             var password = Configuration.GetValue<string>("DatabaseSettings:Password");
             var server = Configuration.GetValue<string>("DatabaseSettings:Server");
@@ -166,7 +168,7 @@ namespace Examination.API
                     c.SwaggerEndpoint("/swagger/v2/swagger.json", "Examination.API v2");
                 });
             }
-
+            app.UseErrorWrapping();
             app.UseHttpsRedirection();
 
             app.UseRouting();
